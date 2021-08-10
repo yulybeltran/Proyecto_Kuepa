@@ -1,0 +1,154 @@
+.titulo-inicio{
+    font-size: 5rem;
+    top: -50px;
+    font-family: 'Montserrat', sans-serif;
+	text-shadow: 1px 1px 5px #ccc;
+}
+
+.titulo-inicio .back{
+    color:#f86433;
+    font-size: 35px;
+   /* position: absolute;*/
+    /*opacity: 0.2;*/
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    margin: 20px 0px 20px 0px;
+
+}
+
+
+
+.iniciosesion-fondo{
+    background-image: url(../../assets/img/secretaria.jpeg );
+    background-size: cover;
+	
+}
+.container1{
+	display: flex;
+	align-items: center;
+	
+}
+
+.carta{
+    width: 25rem;
+	font-family: 'Montserrat';
+	background-color: rgba(0, 178, 165, .08);
+	border-radius: 10px;
+	border: 1px solid rgba(0, 178, 165, .08);
+	padding: 30px;
+}
+.margen{
+	margin: 10px;
+}
+
+ .titulo-iniciosesion h3{
+	font-size: 32px;
+    font-weight: bold;
+	text-align: center;
+	color: #00b2a5;
+	margin-bottom: 30px;
+    margin-top: 20px;
+    font-family: 'Montserrat';
+	text-shadow: 1px 1px 5px #ccc;
+}
+
+#ingreso h4{
+	font-size: 13px;
+}
+#ingreso a{
+	font-size: 14px;
+}
+
+#ingreso input[type=text], input[type=password], input[type=email],select{
+	text-align: left;
+	width: 100%;
+	vertical-align: middle;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 16px;
+	margin: 10px 0;
+	resize: none;
+	border: 1px solid #cccccc;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.boton-iniciosesion{
+    /*naranja oscuro*/
+	background-color: #f86433;
+	margin-top: 5px;
+    font-family: 'Montserrat';
+	height: 45px;
+	color:#ffffff;
+	font-size: 16px; 
+	border-radius: 10px;
+	text-shadow: 1px 1px 3px #ccc;
+	border: none;
+    text-align: center;
+    font-weight: bolder;
+}
+
+
+.boton-iniciosesion:hover{
+	background-color: #00b2a5;
+	border: 2px solid #00b2a5;
+}
+ 
+/*Dar estilo a las etiquetas del formulario*/
+#ingreso label{
+    color:#212529;
+    font-size: 16px;
+}
+
+.titulo-olvidarcontraseña{
+    text-align: center;
+}
+.titulo-olvidarcontraseña a{
+    color:#212529;
+}
+
+.boton-iniciodesesion{
+    text-align: center;
+}
+
+.boton-iniciodesesion input[type=submit]{
+	padding:0px 15px 0px 15px;
+}
+
+
+.formularioingreso{
+	margin:15px;
+}
+
+.error {
+    padding: 0.5rem;
+    background-color: rgba(255, 0, 0, 0.5);
+    border: 1px solid red;
+    border-radius: 6px;
+    margin: 0.5rem 0 0 0;
+}
+
+
+.input {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #777;
+    padding: .5rem;
+    box-sizing: border-box;
+}
+
+.submit {
+    padding: 0.5rem 0;
+    background-color: #00a6ff;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    width: 100%;
+    box-shadow: 0 1px 4px 0 rgba(22, 24, 26, 0.15);
+
+   /* &.disabled {
+        background-color: #e6e6e6;
+        color: #292929;
+        box-shadow: inherit;
+    }*/
+}

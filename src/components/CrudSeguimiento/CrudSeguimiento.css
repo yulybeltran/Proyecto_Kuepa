@@ -1,0 +1,189 @@
+.tabladatospersonales{
+    border: 2px solid #ccc;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    margin: 30px;
+    margin-right: 30px;
+  
+    
+  }
+  .containertabladp{
+    margin: 20px;
+  }
+  
+  .tabladatospersonales th{
+    border: 2px solid #ccc;
+    text-align: center;
+    align-items: center;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .tabladatospersonales td{
+    border: 2px solid #ccc;
+    align-items: center;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    min-width: 125px;
+    width: 100%;
+    text-align: center;
+  
+    
+  }
+  
+  .boton-azul2{
+    background-color: #00b2a5;
+    color:white;
+    border-radius: 5px;
+    min-height: 40px;
+    height: 100%;
+    max-width: 120px;
+    width: 100%;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 1px 1px 2px #00b2a5;
+    border: 1px solid #ccc;
+    
+  }
+  
+  .boton-naranja2{
+    background-color:#f86433;
+    color:white;
+    border-radius: 5px;
+    min-height: 40px;
+    height: 100%;
+    max-width:120px;
+    width: 100%;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 1px 1px 2px #f86433;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  .boton-naranja:hover{
+    background-color: #77757b;
+  }
+  .boton-azul:hover{
+    background-color: #77757b;
+  }
+  .iconover{
+    color: #00b2a5;
+    font-size: 20px;
+    
+  }
+  
+  .iconoeditar{
+    color: #77757b;
+    font-size: 20px;
+  }
+  
+  .iconoeliminar{
+    color: #f86433 ;
+    font-size: 20px;
+  }
+  
+  .boton-iconos{
+    background-color: transparent;
+    border: none;
+  }
+  
+  
+  .modal .registros{
+    width: 1000px;
+    margin: auto;
+    padding: 40px;
+    
+  }
+  
+  .modal-content{
+    border-radius: 20px;
+    border: 2px solid #ccc;
+  }
+  
+  .modal-content h1{
+    color: #00b2a5;
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+  }
+  
+  .modal-header{
+    border:2px solid transparent;
+  }
+  
+  
+  
+  /*Botón X */
+  .espacio-boton-x-formularios{
+    display: flex;
+    justify-content: flex-end;
+    border: 2px solid transparent;
+    border-bottom: transparent;
+  }
+  .boton-cerrar-x-formularios{
+        color: #fff;
+        background-color: #6c757d;
+        border-color: #6c757d;
+        border-radius: 15px;
+        min-width: 30px;
+        max-width: 30px;
+        width: 100%;
+        font-size: 16px;
+        text-align: center;
+        border: 2px solid transparent;
+        margin-inline-end: 80%;
+  }
+  .botonradio{
+    
+    margin: 0px 20px;
+  }
+
+  .botonesradio{
+    text-align: start;
+ 
+  }
+
+  .contenedor_filtro2{
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+  }
+  
+  .contenedor_filtro2 input[type=text], input[type=number], input[type=date], input[type=password], input[type=email],select{
+    text-align: left;
+    width: 100%;
+    vertical-align: middle;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px 0;
+    resize: none;
+    border: 1px solid #cccccc;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+
+  .formutraedatosbasicos .contenedor_filtro2{
+    display: flex;
+    align-items: flex-end;
+  }
+
+.datos_de_contacto{
+    margin-top: 30px;
+  }
+
+/**estilos para  la validacion de formularios**/
+
+input.error{
+  border: 1px solid red;
+}
+
+.errorMessage{
+  color:red;
+  font-size: 0.75rem;
+  display:relative;
+}
+
+

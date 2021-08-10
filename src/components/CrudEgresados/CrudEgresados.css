@@ -1,0 +1,247 @@
+.tabladatospersonales{
+  border: 2px solid #ccc;
+  font-family: 'Montserrat';
+  font-size: 12px;
+  margin: 30px;
+  margin-right: 30px;
+  font-family: 'Montserrat', sans-serif;
+
+  
+}
+.containertabladp{
+  margin: 10px;
+}
+
+.tabladatospersonales th{
+  border: 2px solid #ccc;
+  text-align: center;
+  align-items: center;
+  padding: 10px;
+  font-family: 'Montserrat';
+  background-color: #00b2a5;
+}
+
+.tabladatospersonales td{
+  border: 2px solid #ccc;
+  align-items: center;
+  padding: 10px;
+  font-family: 'Montserrat';
+  min-width: 125px;
+  width: 100%;
+  text-align: center;
+
+  
+}
+
+.boton-azul{
+  background-color: #00b2a5;
+    color:white;
+    border-radius: 5px;
+    min-height: 40px;
+    height: 100%;
+    max-width: 120px;
+    width: 100%;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 1px 1px 2px #00b2a5;
+    border: 1px solid #ccc;
+}
+
+.boton-naranja{
+  background-color:#f86433;
+  color:white;
+  border-radius: 5px;
+  min-height: 40px;
+  height: 100%;
+  max-width:120px;
+  width: 100%;
+  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 1px 1px 2px #f86433;
+  border: 1px solid #ccc;
+  padding: 10px;
+
+}
+.boton-naranja:hover{
+  background-color: #77757b;
+}
+.boton-azul:hover{
+  background-color: #77757b;
+}
+.iconover{
+  color: #00b2a5;
+  font-size: 20px;
+  
+}
+
+.iconoeditar{
+  color: #77757b;
+  font-size: 20px;
+
+}
+
+.iconoeliminar{
+  color: #f86433 ;
+  font-size: 20px;
+}
+
+.boton-iconos{
+  background-color: transparent;
+  border: none;
+}
+
+
+.modal .registros{
+  width: 900px;
+  margin: auto;
+  padding: 40px;
+  
+}
+
+.modal-content{
+  border-radius: 20px;
+  border: 2px solid #ccc;
+}
+
+.modal-content h1{
+  color: #00b2a5;
+  font-size: 30px;
+  text-align: center;
+}
+
+.modal-header{
+  border:2px solid transparent;
+}
+
+
+
+/*Botón X */
+.espacio-boton-x-formularios{
+  display: flex;
+  align-items: flex-end;
+  
+  border: 2px solid transparent;
+  border-bottom: transparent;
+}
+.boton-cerrar-x-formularios{
+      color: #fff;
+      background-color: #6c757d;
+      border-color: #6c757d;
+      border-radius: 15px;
+      min-width: 30px;
+      max-width: 30px;
+      width: 100%;
+      font-size: 16px;
+      text-align: center;
+      border: 2px solid transparent;
+      margin-inline-end: 80%;
+
+}
+
+.botoneslistadoe{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+ 
+}
+.botoneslistadoe a{
+  text-decoration: none;
+  color:white;
+  font-family: 'Montserrat', sans-serif;
+  
+}
+.botoneslistadoe a:hover{
+  text-decoration: none;
+  color:white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.botoneslistadoe button{
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.titulolistaegresados h1{
+  color: #f86433;
+  margin: 30px;
+  text-shadow: 2px 2px 3px #6c757d;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+  font-size: 32px;
+}
+
+.contenedor_filtro{
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  align-items: center;
+}
+
+.contenedor_filtro input[type=text], input[type=number], input[type=date], input[type=password],input[type=textarea],input[type=email],select{
+	text-align: left;
+	width: 100%;
+	vertical-align: middle;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 16px;
+	margin: 10px 0;
+	resize: none;
+	border: 1px solid #cccccc;
+	font-family: 'Montserrat', sans-serif;
+  
+}
+
+
+
+.formutraedatosbasicos .contenedor_filtro2{
+  display: flex;
+  align-items: flex-end;
+}
+
+
+
+/*estilos formularios */
+
+.registros{
+  font-family: 'Montserrat', sans-serif;
+ 
+}
+
+.registros h1{
+  font-size: 32px;
+  font-weight: bold;
+  color:#00b2a5;
+  padding: 0px 15px 0px 15px;
+}
+
+.registros .form-group{
+  color:#6c757d;
+  padding: 0px 15px 0px 15px;
+}
+
+.registros label{
+  font-size: 16px;
+  margin-top: 5px;
+  color:#6c757d;
+}
+
+.registros input{
+  font-size: 16px;
+  color:#6c757d;
+  border: 1px solid #ccc;
+}
+
+.registros select{
+  font-size: 16px;
+  color:#6c757d;
+  border: 1px solid #ccc;
+  margin-top: 1px;
+
+}
+
+
+.contenedor_filtro .form-group{
+  margin: 0px 20px 0px 0px;
+}
+

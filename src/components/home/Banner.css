@@ -1,0 +1,40 @@
+.contenerdor-home{
+    display: flex;
+}
+
+.titulo-home{
+    font-size: 5rem;
+    top: -50px;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 1px 1px 3px #ccc;
+}
+
+.titulo-home .back{
+    color:#f86433;
+    font-size: 35px;
+   /* position: absolute;*/
+    /*opacity: 0.2;*/
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    margin: 20px 0px 20px 0px;
+
+}
+
+.parrafo-home{
+    display: flex;
+}
+
+.parrafo-home p{
+    font-size: 22px;
+    color:black;
+    text-align: justify;
+    padding: 10px 30px 10px 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*
+#carouselExampleFade, .carousel .slide .carousel-fade{
+    z-index: 9999;
+}
+*/

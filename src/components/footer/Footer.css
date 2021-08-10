@@ -1,0 +1,29 @@
+.contenedor-footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background-color: #202020;*/
+    background-color: #000000;
+    /*color oscuro*/
+    border: 1px solid #f86433;
+    /*color claro*/
+   /*border: 1px solid #fd6720;*/
+    min-height: 50px;
+    height: 100%;
+}
+
+.logofooter img{ 
+        /*en la pag orifinal esta de 72px*/
+        max-width: 100px; 
+        width: 100%;
+        margin: 5px 20px 5px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+}
+
+.derechos-autor p{
+    font-size: 15px;
+    color:#555555;
+    margin: 5px 5px 5px 5px;
+}

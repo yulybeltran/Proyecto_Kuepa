@@ -1,0 +1,19 @@
+.contenedor-headerinicio{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*color oscuro*/
+    border: 1px solid #f86433;
+    /*color claro*/
+   /*border: 1px solid #fd6720;*/
+   padding-bottom: 5px;
+}
+.logoheaderinicio img{ 
+        /*en la pagina original esta de 120px*/
+        /* max-width: 150px; */
+        /* width: 100%; */
+        margin: 5px 0px 0px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+}

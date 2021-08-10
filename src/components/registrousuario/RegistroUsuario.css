@@ -1,0 +1,85 @@
+
+.registro-usuario{
+    background-image: url(../../assets/img/fondoregistro2.jpeg );
+    background-size: cover;
+	
+}
+.container-signup{
+	display: flex;
+	align-items: center;
+    /*justify-content: space-evenly;*/
+	
+}
+
+.carta-registro{    width: 25rem;
+    text-align: center;
+	font-family: 'Montserrat';
+	background-color: rgba(0, 178, 165, .2);
+	border-radius: 10px;
+	border: 1px solid rgba(56, 110, 107, 0.08);
+	padding: 30px;
+}
+
+.titulo-iniciodeRegistro h3{
+	font-size: 32px;
+    font-weight: bold;
+	text-align: center;
+	color: #00b2a5;
+	margin-bottom: 30px;
+    margin-top: 20px;
+    font-family: 'Montserrat';
+	text-shadow: 1px 1px 5px #fff;
+}
+
+.margen-signup{
+	margin: 10px;
+}
+
+#registro-signup h4{
+	font-size: 13px;
+}
+#registro-signup a{
+	font-size: 14px;
+}
+
+#registro-signup input[type=name], input[type=text], input[type=password], input[type=email],select{
+	text-align: left;
+	width: 100%;
+	vertical-align: middle;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 16px;
+	margin: 10px 0;
+	resize: none;
+	border: 1px solid #cccccc;
+	font-family: 'Montserrat', sans-serif;
+}
+
+
+ 
+/*Dar estilo a las etiquetas del formulario*/
+#registro-signup label{
+    color:#212529;
+    font-size: 16px;
+}
+
+.titulo-olvidarcontraseña{
+    text-align: center;
+}
+.titulo-olvidarcontraseña a{
+    color:#212529;
+}
+
+.boton-iniciodesesion{
+    text-align: center;
+}
+
+.boton-iniciodesesion input[type=submit]{
+	padding:0px 15px 0px 15px;
+}
+
+
+.formularioingreso{
+	margin:15px;
+}
+
