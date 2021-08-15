@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route,  Redirect} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Home from './pages/Home';
 import Iniciosesion from './pages/Iniciosesion';
 import SignUp from './pages/SignUp';
@@ -11,7 +11,7 @@ import InformacionLaboral from './pages/InformacionLaboral';
 function App() {
   return (
     <div>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path='/' exact path component={Iniciosesion} />
           <Route path='/home' exact component={Home} />
@@ -20,7 +20,7 @@ function App() {
           <Route path='/listaegresados' component={Listadodeegresados} />
           <Route path='/informacionlaboral' component={InformacionLaboral} />
 
-          <Route exact path="/"render={()=><Redirect to="/iniciosesion/"></Redirect>}></Route>
+        
 
         </Switch>
         
