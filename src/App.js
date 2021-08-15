@@ -13,12 +13,14 @@ function App() {
     <div>
       <Router>
         <Switch>
-          <Route path='/' exact component={Iniciosesion} />
+          <Route path='/' exact path component={Iniciosesion} />
           <Route path='/home' exact component={Home} />
           <Route path='/iniciosesion' component={Iniciosesion} />
           <Route path='/registrar' component={SignUp} />
           <Route path='/listaegresados' component={Listadodeegresados} />
           <Route path='/informacionlaboral' component={InformacionLaboral} />
+
+          <Route exact path="/"render={()=><Redirect to="/iniciosesion/"></Redirect>}></Route>
 
         </Switch>
         
