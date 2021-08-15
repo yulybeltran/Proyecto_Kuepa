@@ -1,5 +1,5 @@
 <h1 align="center"><strong>Proyecto Kuepa</strong></h1>
-<h2> Sistema de registro de egresados para fines administrativos </h2>
+<h2 align="center"> <strong>Sistema de Registro de Egresados</strong></h2>
 
 ***
 
@@ -31,8 +31,6 @@
 -   SweetAlert2
 -   Bootstrap 5.0  
 -   ReactStrap
--   Formik  
--   Yup
 -   @material-ui/icons
 -   @material-ui/core
 -   GitHub pages
@@ -56,6 +54,8 @@
 <img src="/src/assets/img/vcerrarsesion.png">
 -   Registro de usuario<br>
     <img src="/src/assets/img/vregistrarse.png">
+ -   Página Principal<br>
+    <img src="/src/assets/img/vpaginaprincipal.jpeg">
 -   Listado de Egresados<br>
     <img src="/src/assets/img/vlistaegresados.png">
     -   Registro de Egresado<br>
@@ -70,23 +70,28 @@
         <img src="/src/assets/img/vlistaegresados_ver.png">
     -   Consulta<br>
         <img src="/src/assets/img/vlistaegresados_consultaexiste.png">
-        <img src="/src/assets/img/vlistaegresados_consultanoexiste.png">
 -   Seguimiento<br>
-    <img src="/src/assets/img/logokuepa.png">
+    <img src="/src/assets/img/vseguimiento.jpeg">
     -   Registro de seguimiento<br>
-        <img src="/src/assets/img/logokuepa.png">
+        <img src="/src/assets/img/vseguimiento_registrar.jpeg">
+        <img src="/src/assets/img/vseguimiento_registrardos.jpeg">
     -   Editar Seguimiento<br>
-        <img src="/src/assets/img/logokuepa.png">
+         <img src="/src/assets/img/vseguimiento_registrar.jpeg">
+        <img src="/src/assets/img/vseguimiento_registrardos.jpeg">
     -   Eliminar Seguimiento<br>
         <img src="/src/assets/img/vseguimiento_eliminaruno.png">
         <img src="/src/assets/img/vseguimiento_eliminardos.png">
     -   ver Seguimiento<br>
-        <img src="/src/assets/img/logokuepa.png">
+        <img src="/src/assets/img/vseguimiento_ver.jpeg">
     -   Consulta por Número de documento<br>
-        <img src="/src/assets/img/logokuepa.png">
+        <img src="/src/assets/img/vseguimiento_consulta.jpeg">
 
 ##  Créditos 
 ### Dearrollado por:
--   Yuly Marcela Beltrán Rodríguez
+-   <h3>Yuly Marcela Beltrán Rodríguez</h3>
+<p align="justify">Desarrolladora Junior Front-End, soy una persona responsable, confiable y leal en las tareas asignadas, trabajo en equipo, con motivación y gran entusiasmo por aprender y formarme laboral mente.<br>
+Contáctame en : yulybeltran082@gmail.com</p>
 
--   Katherine Melissa Urrego Cuartas
+-   <h3>Katherine Melissa Urrego Cuartas </h3>
+<p align="justify">Soy Ingeniera Industrial & Junior Front End Developer, me apasionada la programación, planificación, creación y desarrollo de interfaces web. Tengo conocimientos en esta área gracias a mi formación. Por ello, considero que puedo aportar valor y seguir evolucionando profesionalmente como persona organizada y con una gran motivación, soy capaz de adaptarme a las circunstancias y dar siempre lo mejor de mí, al mismo tiempo que me esfuerzo por trabajar en equipo y fomentar valores como los del compañerismo <br>
+<a href="www.linkedin.com/in/katherine-melissa-u-a9a95892">Linkedin</a></p>

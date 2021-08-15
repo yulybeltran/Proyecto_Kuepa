@@ -1,24 +1,20 @@
 import React, { Component } from "react";
 import "./CrudSeguimiento.css";
-import firebase from "../../firebase";
+import firebase, { db } from "../../firebase";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal, ModalBody, ModalHeader, ModalFooter,Container, Form } from "reactstrap";
 import * as FaIcons from 'react-icons/fa';
 import * as RiIcons from 'react-icons/ri';
 import Swal from 'sweetalert2';
 import 'react-responsive-modal/styles.css';
+import CrudEgresados from "../CrudEgresados/CrudEgresados";
 
 
-//const  fecharegistroRegex =RegExp ();
-const porquenoRegex = RegExp(/^[A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]{5,10}/);
-const nombreempresaRegex = RegExp(/^[A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]{3,30}/); 
-const cargoRegex = RegExp(/^[A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]{5,20}/);
-const estudioactualRegex = RegExp(/^[A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]{5,20}/);
-const observacionesRegex = RegExp(/^[A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]{5,100}/);
-
-
+<CrudEgresados />
 class CrudSeguimiento extends Component {
   state = {
+    datacompuesta: [],
+    busqueda: "",
     data: [],
     copia:[],
     modalInsertar: false,
@@ -29,9 +25,13 @@ class CrudSeguimiento extends Component {
     modalVer2: false,
     abiertoCerrado: false, //para cerrar el modal boton X
 
-
     form:{
+      ndocumento:'',
       numerodedocumento:'',
+      nombres: '',
+      apellidos: '',
+      telefono:'',
+      correo:'',
       fecharegistro:'',
       estatrabajando:'',
       porqueno:'',
@@ -70,7 +70,7 @@ class CrudSeguimiento extends Component {
   //console.log(estudiantefiltrado)
   const copiarespaldo = this.state.data
   for(const aux in copiarespaldo){
-    if(copiarespaldo[aux].fecharegistro === this.state.busqueda) 
+    if(copiarespaldo[aux].numerodedocumento === this.state.busqueda) 
    {
      
       this.setState({
@@ -79,24 +79,13 @@ class CrudSeguimiento extends Component {
       })
       return
     } else{
-    Swal.fire(
-      {
-        showCloseButton: true,
-        title: 'El registro no existe',
-        icon: 'warning',
-        showConfirmButton: true,
-        confirmButtonColor: '#00B2A5',
-        confirmButtonText: 'Ok'
-      }
-    )
+  
      this.setState({
      data:this.state.copia
     
    })}
   }
   }
-
-
 
   peticionGet = () => {
     firebase.child("seguimientos").on("value", (seguimiento) => {
@@ -108,10 +97,15 @@ class CrudSeguimiento extends Component {
     });
   };
 
-  
+
   peticionPost=()=>{
 
     const initialState={
+      numerodedocumento:'',
+      nombres: '',
+      apellidos: '',
+      telefono:'',
+      correo:'',
       fecharegistro:'',
       estatrabajando:'',
       porqueno:'',
@@ -136,17 +130,30 @@ class CrudSeguimiento extends Component {
       observaciones:'',
     }
 
-
     firebase.child("seguimientos").push(this.state.form,
       error=>{
         if(error)console.log(error)
       });
       this.setState({modalInsertar2: false,form:initialState});
-     // this.setState({modalInsertar: false,form:initialState});
+  
+  }
+
+  filtrocompuesto = () =>{
+  console.log(this.state.ndocumento)
+  db.ref('egresados').orderByChild('numerodedocumento').equalTo(this.state.form.ndocumento).on('child_added',(snapshot)=>{
+  console.log(snapshot.key)
+ 
+ 
+  })
   }
 
   peticionPut=()=>{
     const initialState={
+      numerodedocumento:'',
+      nombres: '',
+      apellidos: '',
+      telefono:'',
+      correo:'',
       fecharegistro:'',
       estatrabajando:'',
       porqueno:'',
@@ -181,7 +188,7 @@ class CrudSeguimiento extends Component {
 
   peticionDelete=()=>{
     firebase.child(`seguimientos/${this.state.id}`).remove(
-   error=>{
+    error=>{
      if(error)console.log(error)
    });
 }
@@ -191,7 +198,7 @@ class CrudSeguimiento extends Component {
       ...this.state.form,
       [e.target.name]: e.target.value
     }})
-    console.log(this.state.form);
+   
   }
 
   seleccionarSeguimiento=async(seguimiento, id, caso)=>{
@@ -200,7 +207,6 @@ class CrudSeguimiento extends Component {
 
     (caso==="Editar")?this.setState({modalEditar: true}):
     (caso==="Ver")?this.setState({modalVer: true}):
-
     this.peticionDelete()    
 
   }
@@ -209,7 +215,6 @@ class CrudSeguimiento extends Component {
     this.peticionGet();
   }
 
-  
   MostrarAlerta=(id)=>{
     this.setState({id:id})
     Swal.fire({
@@ -241,16 +246,14 @@ class CrudSeguimiento extends Component {
     })
   }
 
+ 
+  
 
   reload = () => {
     window.location.reload(true);
 }
 
-
-
   render() {
-
-    //const {errores}=this.state
 
     return (
       <container-fluid className="containertabladp">
@@ -265,7 +268,7 @@ class CrudSeguimiento extends Component {
         <div className="form-group col-md-4">
           <label>Número de documento </label>
           <br />
-          <input type="data" className="form-control"  name="fecharegistro"  onChange={this.onChange}/>
+          <input type="data" pattern="[0-9- ]{1,12}"  className="form-control"  name="numerodedocumento"  onChange={this.onChange}/>
         </div>
         <div className="form-group col-md-4">
         <div className="botoneslistadoe">
@@ -273,11 +276,9 @@ class CrudSeguimiento extends Component {
          <button className="boton-azul2" onClick={this.reload} type="button" >Nueva Consulta</button>
         <button className="boton-naranja2" onClick={()=>this.setState({modalInsertar: true})}>Nuevo Registro</button>
         </div>
-        </div>
-          
+        </div> 
          </div>
         </div>
-      
         <br />
         <div class="table-responsive">
         <table className="tabladatospersonales">
@@ -355,13 +356,13 @@ class CrudSeguimiento extends Component {
                 <button className="boton-iconos" onClick={()=>this.MostrarAlerta(i)}><RiIcons.RiDeleteBinFill className="iconoeliminar"/></button>
              </td>
                
-              </tr>
+            </tr>
             })}
           </tbody>
         </table>
         </div>
 
-    <Modal className="modal-dialog modal-dialog-centered modal-lg" isOpen={this.state.modalInsertar}>
+        <Modal className="modal-dialog modal-dialog-centered modal-lg" isOpen={this.state.modalInsertar}>
     <Form>
                       <ModalHeader className="espacio-boton-x-formularios">
                       <button className="boton-cerrar-x-formularios" onClick={()=>this.setState({modalInsertar: false})}>X</button>
@@ -373,11 +374,11 @@ class CrudSeguimiento extends Component {
         <div className="form-group col-md-6">
           <label>Número de documento </label>
           <br />
-          <input type="number" required pattern="/{3}/" className="form-control"  name="numerodedocumento" onChange={this.handleChange}/>
+          <input type="number" required pattern="[0-9- ]{7,12}"  className="form-control"  name="numerodedocumento" onChange={this.handleChange} value={this.state.form.numerodedocumento}/>
           </div>
           <div className="form-group col-md-6">
           <div className="botoneslistadoe">
-         <button className="boton-azul2"  onClick={()=>this.filtrarElementos()}>Consultar</button>
+         <button className="boton-azul2" type='button' onClick={()=>this.filtrocompuesto()}>Consultar</button>
         </div>
           </div>
           <div className="datos_de_contacto">
@@ -385,13 +386,13 @@ class CrudSeguimiento extends Component {
               <div className="form-group col-md-6">
                   <label>Nombres</label>
                   <br />
-                  <input type="text" className="form-control" autoComplete="none" name="nombres" readOnly onChange={this.handleChange} value={this.state.filtrarElementos && this.state.form.nombres}/>
+                  <input type="text" className="form-control" autoComplete="none" name="nombres"  onChange={this.handleChange} value={this.state.form && this.state.form.nombres}/>
                   <br />
               </div>
               <div className="form-group col-md-6">
                   <label>Apellidos</label>
                   <br />
-                  <input type="text" className="form-control" autoComplete="none" name="apellidos" readOnly onChange={this.handleChange}  value={this.state.filtrarElementos && this.state.form.apellidos}/>
+                  <input type="text" className="form-control" autoComplete="none" name="apellidos"  onChange={this.handleChange}  value={this.state.form && this.state.form.apellidos}/>
                   <br />
               </div>
               </div>
@@ -399,13 +400,13 @@ class CrudSeguimiento extends Component {
               <div className="form-group col-md-6">
                   <label>Teléfono</label>
                   <br />
-                  <input type="text" className="form-control" autoComplete="none" name="telefono" readOnly onChange={this.handleChange} value={this.state.filtrarElementos && this.state.form.telefono}/>
+                  <input type="text" className="form-control" autoComplete="none" name="telefono"  onChange={this.handleChange} value={this.state.form && this.state.form.telefono}/>
                   <br />
               </div>
               <div className="form-group col-md-6">
-                  <label>Correo Electronico</label>
+                  <label>Correo Electrónico</label>
                   <br />
-                  <input type="text" className="form-control" autoComplete="none" name="correo"  readOnly  onChange={this.handleChange} value={this.state.filtrarElementos && this.state.form.correo}/>
+                  <input type="text" className="form-control" autoComplete="none" name="correo"   onChange={this.handleChange} value={this.state.form && this.state.form.correo}/>
               </div>
               </div>
             </div>
@@ -421,7 +422,7 @@ class CrudSeguimiento extends Component {
           <label>¿Está trabajando en este momento? </label>
           <br />
           <div className="botonesradio">
-          <input type="radio" className="botonradio" name="estatrabajando"  value="Si" onChange={this.handleChange}/>Si
+          <input type="radio" className="botonradio" name="estatrabajando" required value="Si" onChange={this.handleChange}/>Si
           <input type="radio" className="botonradio" name="estatrabajando"  value="No" onChange={this.handleChange}/>No
           </div>
           <br />
@@ -437,7 +438,7 @@ class CrudSeguimiento extends Component {
             <div className="form-group col-md-6">
           <label>Nombre de la empresa </label>
           <br />
-          <input type="text"  pattern="/\{3}/"  className="form-control" autoComplete="none" name="nombreempresa" onChange={this.handleChange} value={this.state.form && this.state.form.nombreempresa}/>
+          <input type="text" pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" className="form-control" autoComplete="none" name="nombreempresa" onChange={this.handleChange} value={this.state.form && this.state.form.nombreempresa}/>
           <br />
           </div>
           </div>
@@ -446,7 +447,7 @@ class CrudSeguimiento extends Component {
           <label>Sector de la empresa </label>
           <br />
           <select type="text" className="form-control" autoComplete="none" name="sectorempresa" onChange={this.handleChange} value={this.state.form && this.state.form.sectorempresa} aria-label="Default select example">    
-                  <option value="0" selected="">Seleccione</option>
+                  <option ></option>
                   <option value="Agropecuario">Agropecuario</option>
                   <option value="De servicios">De servicios</option>
                   <option value="Industrial">Industrial</option>
@@ -473,7 +474,7 @@ class CrudSeguimiento extends Component {
           <label>Promedio salarial </label>
           <br />
           <select type="text" className="form-control" autoComplete="none"  name="promediosalarial" onChange={this.handleChange} value={this.state.form && this.state.form.promediosalarial} aria-label="Default select example">    
-                  <option value="0" selected="">Seleccione</option>
+                  <option></option>
                   <option value="Menos de 1 SMLV">Menos de 1 SMLV</option>
                   <option value="1 SMLV">1 SMLV</option>
                   <option value="2 SMLV">2 SMLV</option>
@@ -487,8 +488,8 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
           <label>Tipo de contrato </label>
           <br />
-          <select type="text" className="form-control" autoComplete="none" name="tipocontrato" onChange={this.handleChange} value={this.state.form && this.state.form.tipocontrato} aria-label="Default select example">    
-                  <option value="0" selected="">Seleccione</option>
+          <select type="text" className="form-control" autoComplete="none" name="tipocontrato" placeholder="Seleccione" onChange={this.handleChange} value={this.state.form && this.state.form.tipocontrato} aria-label="Default select example">    
+                  <option ></option>
                   <option value="Contrato a término fijo">Contrato a término fijo</option>
                   <option value="Contrato a término indefinido">Contrato a término indefinido</option>
                   <option value="Contrato de obra o Laboral">Contrato de obra o Laboral</option>
@@ -594,13 +595,13 @@ class CrudSeguimiento extends Component {
           </div>
       </ModalBody>
       <ModalFooter>
-      <button className="boton-azul2" onClick={()=>this.setState({modalInsertar: true})}>Guardar</button>
-      <button className="boton-naranja2" onClick={()=>this.setState({modalInsertar2:true, modalInsertar:false})}>Siguiente</button>
+      {/*<button className="boton-azul2" onClick={()=>this.setState({modalInsertar: true})}>Guardar</button>*/}
+     {/* <button className="boton-naranja2"  type="submit" onClick={this.validacion}>Siguiente2</button>*/}
+     <button className="boton-naranja2" onClick={()=>this.setState({modalInsertar2:true, modalInsertar:false})}>Siguiente</button>
       <button className="boton-azul2" onClick={()=>this.setState({modalInsertar: false})}>Cancelar</button>
       </ModalFooter>
       </Form>
     </Modal>
-
 
 
     <Modal  className='modal-dialog modal-dialog-centered modal-lg' isOpen={this.state.modalEditar}>
@@ -614,12 +615,11 @@ class CrudSeguimiento extends Component {
         <div className="form-group col-md-6">
           <label>Número de documento </label>
           <br />
-          <input type="number" className="form-control"  name="numerodedocumento" onChange={this.handleChange}/>
+          <input type="number" pattern="[0-9- ]{8,15}" required  className="form-control"  name="numerodedocumento" onChange={this.handleChange} value={this.state.form && this.state.form.numerodedocumento}/>
           </div>
           <div className="form-group col-md-6">
           <div className="botoneslistadoe">
          <button className="boton-azul2"  onClick={()=>this.filtrarElementos()}>Consultar</button>
-         <button className="boton-naranja2" onClick={()=>this.setState({modalInsertar: true})}>Nuevo Registro</button>
         </div>
           </div>
           <div className="datos_de_contacto">
@@ -627,13 +627,13 @@ class CrudSeguimiento extends Component {
               <div className="form-group col-md-6">
                   <label>Nombres</label>
                   <br />
-                  <input type="text" className="form-control" autoComplete="none" name="nombres" readOnly onChange={this.handleChange} value={this.state.filtrarElementos && this.state.form.nombres}/>
+                  <input type="text" className="form-control" autoComplete="none" name="nombres"  onChange={this.handleChange} value={this.state.form && this.state.form.nombres}/>
                   <br />
               </div>
               <div className="form-group col-md-6">
                   <label>Apellidos</label>
                   <br />
-                  <input type="text" className="form-control" autoComplete="none" name="apellidos" readOnly onChange={this.handleChange}  value={this.state.filtrarElementos && this.state.form.apellidos}/>
+                  <input type="text" className="form-control" autoComplete="none" name="apellidos"  onChange={this.handleChange}  value={this.state.form && this.state.form.apellidos}/>
                   <br />
               </div>
               </div>
@@ -641,13 +641,13 @@ class CrudSeguimiento extends Component {
               <div className="form-group col-md-6">
                   <label>Teléfono</label>
                   <br />
-                  <input type="text" className="form-control" autoComplete="none" name="telefono" readOnly onChange={this.handleChange} value={this.state.filtrarElementos && this.state.form.telefono}/>
+                  <input type="text" className="form-control" autoComplete="none" name="telefono"  onChange={this.handleChange} value={this.state.form && this.state.form.telefono}/>
                   <br />
               </div>
               <div className="form-group col-md-6">
                   <label>Correo Electronico</label>
                   <br />
-                  <input type="text" className="form-control" autoComplete="none" name="correo"  readOnly  onChange={this.handleChange} value={this.state.filtrarElementos && this.state.form.correo}/>
+                  <input type="text" className="form-control" autoComplete="none" name="correo"  onChange={this.handleChange} value={this.state.form && this.state.form.correo}/>
               </div>
               </div>
             </div>
@@ -656,14 +656,14 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
           <label>Fecha de registro </label>
           <br />
-          <input type="date" className="form-control"  autoComplete="none" name="fecharegistro" onChange={this.handleChange} value={this.state.form && this.state.form.fecharegistro}/>
+          <input type="date"  required className="form-control"  autoComplete="none" name="fecharegistro" onChange={this.handleChange} value={this.state.form && this.state.form.fecharegistro}/>
           <br />
           </div>
           <div className="form-group col-md-6">
           <label>¿Está trabajando en este momento? </label>
           <br />
           <div className="botonesradio">
-          <input type="radio" className="botonradio" name="estatrabajando"  value="Si" onChange={this.handleChange}/>Si
+          <input type="radio" className="botonradio" name="estatrabajando" required  value="Si" onChange={this.handleChange}/>Si
           <input type="radio" className="botonradio" name="estatrabajando"  value="No" onChange={this.handleChange}/>No
           </div>
           <br />
@@ -852,12 +852,12 @@ class CrudSeguimiento extends Component {
         <div className="form-group col-md-6">
           <label>Número de documento </label>
           <br />
-          <input type="number" className="form-control"  name="numerodedocumento" onChange={this.handleChange}/>
+          <input type="number" className="form-control" readOnly name="numerodedocumento" onChange={this.handleChange} value={this.state.form && this.state.form.numerodedocumento}/>
           </div>
           <div className="form-group col-md-6">
           <div className="botoneslistadoe">
          <button className="boton-azul2"  onClick={()=>this.filtrarElementos()}>Consultar</button>
-         <button className="boton-naranja2" onClick={()=>this.setState({modalInsertar: true})}>Nuevo Registro</button>
+         
         </div>
           </div>
           <div className="datos_de_contacto">
@@ -865,13 +865,13 @@ class CrudSeguimiento extends Component {
               <div className="form-group col-md-6">
                   <label>Nombres</label>
                   <br />
-                  <input type="text" className="form-control" autoComplete="none" name="nombres" readOnly onChange={this.handleChange} value={this.state.filtrarElementos && this.state.form.nombres}/>
+                  <input type="text" className="form-control" readOnly autoComplete="none" name="nombres" readOnly onChange={this.handleChange} value={this.state.form && this.state.form.nombres}/>
                   <br />
               </div>
               <div className="form-group col-md-6">
                   <label>Apellidos</label>
                   <br />
-                  <input type="text" className="form-control" autoComplete="none" name="apellidos" readOnly onChange={this.handleChange}  value={this.state.filtrarElementos && this.state.form.apellidos}/>
+                  <input type="text" className="form-control" readOnly autoComplete="none" name="apellidos" readOnly onChange={this.handleChange}  value={this.state.form && this.state.form.apellidos}/>
                   <br />
               </div>
               </div>
@@ -879,13 +879,13 @@ class CrudSeguimiento extends Component {
               <div className="form-group col-md-6">
                   <label>Teléfono</label>
                   <br />
-                  <input type="text" className="form-control" autoComplete="none" name="telefono" readOnly onChange={this.handleChange} value={this.state.filtrarElementos && this.state.form.telefono}/>
+                  <input type="text" className="form-control" readOnly autoComplete="none" name="telefono" readOnly onChange={this.handleChange} value={this.state.form && this.state.form.telefono}/>
                   <br />
               </div>
               <div className="form-group col-md-6">
                   <label>Correo Electronico</label>
                   <br />
-                  <input type="text" className="form-control" autoComplete="none" name="correo"  readOnly  onChange={this.handleChange} value={this.state.filtrarElementos && this.state.form.correo}/>
+                  <input type="text" className="form-control" readOnly autoComplete="none" name="correo"  readOnly  onChange={this.handleChange} value={this.state.form && this.state.form.correo}/>
               </div>
               </div>
             </div>
@@ -894,7 +894,7 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
           <label>Fecha de registro </label>
           <br />
-          <input type="date" className="form-control" autoComplete="none" name="fecharegistro"  value={this.state.form && this.state.form.fecharegistro}/>
+          <input type="date" className="form-control" readOnly autoComplete="none" name="fecharegistro"  value={this.state.form && this.state.form.fecharegistro}/>
           <br />
           </div>
           <div className="form-group col-md-6">
@@ -911,13 +911,13 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
           <label>¿Por qué no? </label>
           <br />
-          <textarea type="text" className="form-control" autoComplete="none" name="porqueno" value={this.state.form && this.state.form.porqueno}/>
+          <textarea type="text" className="form-control" readOnly autoComplete="none" name="porqueno" value={this.state.form && this.state.form.porqueno}/>
           <br />
           </div>
           <div className="form-group col-md-6">
           <label>Nombre de la empresa </label>
           <br />
-          <input type="text" className="form-control" autoComplete="none" name="nombreempresa"  value={this.state.form && this.state.form.nombreempresa}/>
+          <input type="text" className="form-control" readOnly autoComplete="none" name="nombreempresa"  value={this.state.form && this.state.form.nombreempresa}/>
           <br />
           </div>
           </div>
@@ -925,7 +925,7 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
           <label>Sector de la empresa </label>
           <br />
-          <select type="text" className="form-control"  autoComplete="none" name="sectorempresa"  value={this.state.form && this.state.form.sectorempresa} aria-label="Default select example">    
+          <select type="text" className="form-control" readOnly  autoComplete="none" name="sectorempresa"  value={this.state.form && this.state.form.sectorempresa} aria-label="Default select example">    
                   <option value="0" selected="">Seleccione</option>
                   <option value="Agropecuario">Agropecuario</option>
                   <option value="De servicios">De servicios</option>
@@ -944,7 +944,7 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
           <label>Cargo </label>
           <br />
-          <input type="text" className="form-control"  autoComplete="none" name="cargo"  value={this.state.form && this.state.form.cargo}/>
+          <input type="text" className="form-control" readOnly  autoComplete="none" name="cargo"  value={this.state.form && this.state.form.cargo}/>
           <br />
           </div>
           </div>
@@ -952,7 +952,7 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
           <label>Promedio salarial </label>
           <br />
-          <select type="text" className="form-control" autoComplete="none" name="promediosalarial"  value={this.state.form && this.state.form.promediosalarial} aria-label="Default select example">    
+          <select type="text" className="form-control" readOnly autoComplete="none" name="promediosalarial"  value={this.state.form && this.state.form.promediosalarial} aria-label="Default select example">    
                   <option value="0" selected="">Seleccione</option>
                   <option value="Menos de 1 SMLV">Menos de 1 SMLV</option>
                   <option value="1 SMLV">1 SMLV</option>
@@ -967,7 +967,7 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
           <label>Tipo de contrato </label>
           <br />
-          <select type="text" className="form-control" autoComplete="none"  name="tipocontrato"  value={this.state.form && this.state.form.tipocontrato} aria-label="Default select example">    
+          <select type="text" className="form-control" readOnly autoComplete="none"  name="tipocontrato"  value={this.state.form && this.state.form.tipocontrato} aria-label="Default select example">    
                   <option value="0" selected="">Seleccione</option>
                   <option value="Contrato a término fijo">Contrato a término fijo</option>
                   <option value="Contrato a término indefinido">Contrato a término indefinido</option>
@@ -1003,7 +1003,7 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
           <label>¿Cuántas horas semanales labora? </label>
           <br />
-          <select type="text" className="form-control" autoComplete="none"  name="horaslaborales"  value={this.state.form && this.state.form.horaslaborales} aria-label="Default select example">    
+          <select type="text" className="form-control" autoComplete="none" readOnly  name="horaslaborales"  value={this.state.form && this.state.form.horaslaborales} aria-label="Default select example">    
                   <option value="0" selected="">Seleccione</option>
                   <option value="Menos de 36 horas">Menos de 36 horas</option>
                   <option value="36 horas">36 horas</option>
@@ -1018,7 +1018,7 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
           <label>¿Cuánto tiempo lleva trabajando en la empresa? </label>
           <br />
-          <select type="text" className="form-control" autoComplete="none"  name="tiempoenempresa"  value={this.state.form && this.state.form.tiempoenempresa} aria-label="Default select example">    
+          <select type="text" className="form-control" autoComplete="none" readOnly  name="tiempoenempresa"  value={this.state.form && this.state.form.tiempoenempresa} aria-label="Default select example">    
           <option value="0" selected="">Seleccione</option>
           <option value="0" selected="">Seleccione</option>
                   <option value="Menos de 6 meses">Menos de 6 meses</option>
@@ -1034,7 +1034,7 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
           <label>¿Cuál es su modalidad de trabajo? </label>
           <br />
-          <select type="text" className="form-control" autoComplete="none"  name="modalidadtrabajo"  value={this.state.form && this.state.form.modalidadtrabajo} aria-label="Default select example">    
+          <select type="text" className="form-control" autoComplete="none" readOnly  name="modalidadtrabajo"  value={this.state.form && this.state.form.modalidadtrabajo} aria-label="Default select example">    
                   <option value="0" selected="">Seleccione</option>
                   <option value="Presencial">Presencial</option>
                   <option value="Remoto">Remoto</option>
@@ -1048,7 +1048,7 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
           <label>¿Cuál es su horario de trabajo? </label>
           <br />
-          <select type="text" className="form-control" autoComplete="none"  name="horariotrabajo"  value={this.state.form && this.state.form.horariotrabajo} aria-label="Default select example">    
+          <select type="text" className="form-control" autoComplete="none" readOnly  name="horariotrabajo"  value={this.state.form && this.state.form.horariotrabajo} aria-label="Default select example">    
                   <option value="0" selected="">Seleccione</option>
                   <option value="4:00 am - 3:00 pm">4:00 am - 3:00 pm</option>
                   <option value="6:00 am - 6:00 pm">6:00 am - 6:00 pm</option>
@@ -1094,8 +1094,8 @@ class CrudSeguimiento extends Component {
               <label>¿Está estudiando actualmente? </label>
               <br />
               <div className="botonesradio">
-                <input type="radio" className="botonradio" name="estudiaactualmentepregunta"  value="Si" onChange={this.handleChange} value={this.state.form && this.state.form.estudiaactualmentepregunta}/>Si
-                <input type="radio" className="botonradio" name="estudiaactualmentepregunta"  value="No" onChange={this.handleChange} value={this.state.form && this.state.form.estudiaactualmentepregunta}/>No
+                <input type="radio" className="botonradio" name="estudiaactualmentepregunta" required  value="Si" onChange={this.handleChange}/>Si
+                <input type="radio" className="botonradio" name="estudiaactualmentepregunta"  value="No" onChange={this.handleChange} />No
               </div>
               <br />
           </div>
@@ -1148,7 +1148,7 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
             <label>Observaciones </label>
             <br />
-            <textarea type="text" className="form-control" autoComplete="none" name="observaciones" onChange={this.handleChange} value={this.state.form && this.state.form.observaciones}/>
+            <textarea type="text" className="form-control" required autoComplete="none" name="observaciones" onChange={this.handleChange} value={this.state.form && this.state.form.observaciones}/>
             <br />
           </div>
         </div>
@@ -1173,7 +1173,7 @@ class CrudSeguimiento extends Component {
               <label>¿Está estudiando actualmente? </label>
               <br />
               <div className="botonesradio">
-                <input type="radio" className="botonradio" name="estudiaactualmentepregunta"  value="Si" onChange={this.handleChange} />Si
+                <input type="radio" className="botonradio" name="estudiaactualmentepregunta"  required value="Si" onChange={this.handleChange} />Si
                 <input type="radio" className="botonradio" name="estudiaactualmentepregunta"  value="No" onChange={this.handleChange} />No
               </div>
               <br />
@@ -1228,7 +1228,7 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
             <label>Observaciones </label>
             <br />
-            <textarea type="text" className="form-control" autoComplete="none" name="observaciones" onChange={this.handleChange} value={this.state.form && this.state.form.observaciones}/>
+            <textarea type="text" className="form-control" required autoComplete="none" name="observaciones" onChange={this.handleChange} value={this.state.form && this.state.form.observaciones}/>
             <br />
           </div>
         </div>
@@ -1260,7 +1260,7 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
             <label>¿Qué está estudiando? </label>
             <br />
-            <input type="text" className="form-control"  autoComplete="none" name="estudioactual"  value={this.state.form && this.state.form.estudioactual}/>
+            <input type="text" className="form-control" readOnly  autoComplete="none" name="estudioactual"  value={this.state.form && this.state.form.estudioactual}/>
             <br />
             </div>
           </div>
@@ -1268,13 +1268,13 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
             <label>¿Dónde está estudiando? </label>
             <br />
-            <input type="text" className="form-control"  autoComplete="none" name="donde"  value={this.state.form && this.state.form.donde}/>
+            <input type="text" className="form-control" readOnly autoComplete="none" name="donde"  value={this.state.form && this.state.form.donde}/>
             <br />
           </div>
           <div className="form-group col-md-6">
             <label>Tipo de estudio</label>
             <br />
-            <select type="text" className="form-control" autoComplete="none" name="tipodeestudio"  value={this.state.form && this.state.form.tipodeestudio}  aria-label="Default select example">    
+            <select type="text" className="form-control" readOnly autoComplete="none" name="tipodeestudio"  value={this.state.form && this.state.form.tipodeestudio}  aria-label="Default select example">    
             <option value="0" selected="">Seleccione</option>
                     <option value="Técnico">Técnico</option>
                     <option value="Tecnólogo">Tecnólogo</option>
@@ -1293,20 +1293,20 @@ class CrudSeguimiento extends Component {
           <div className="form-group col-md-6">
             <label>Fecha de inicio </label>
             <br />
-            <input type="date" autoComplete="none" className="form-control" name="fechadeinicio"  value={this.state.form && this.state.form.fechadeinicio}/>
+            <input type="date" autoComplete="none" className="form-control" readOnly name="fechadeinicio"  value={this.state.form && this.state.form.fechadeinicio}/>
             <br />
           </div>
           <div className="form-group col-md-6">
             <label>Fecha de finalización </label>
             <br />
-            <input type="date" autoComplete="none" className="form-control" name="fechadefinalizacion"  value={this.state.form && this.state.form.fechadefinalizacion}/>
+            <input type="date" autoComplete="none" className="form-control" readOnly name="fechadefinalizacion"  value={this.state.form && this.state.form.fechadefinalizacion}/>
             <br />
           </div>
           </div>
           <div className="form-group col-md-6">
             <label>Observaciones </label>
             <br />
-            <textarea type="text" className="form-control" autoComplete="none" name="observaciones"  value={this.state.form && this.state.form.observaciones}/>
+            <textarea type="text" className="form-control" autoComplete="none" readOnly name="observaciones"  value={this.state.form && this.state.form.observaciones}/>
             <br />
           </div>
         </div>

@@ -174,16 +174,5 @@
     margin-top: 30px;
   }
 
-/**estilos para  la validacion de formularios**/
-
-input.error{
-  border: 1px solid red;
-}
-
-.errorMessage{
-  color:red;
-  font-size: 0.75rem;
-  display:relative;
-}
 
 
