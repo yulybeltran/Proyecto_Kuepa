@@ -8,16 +8,12 @@
 .titulo-inicio .back{
     color:#f86433;
     font-size: 35px;
-   /* position: absolute;*/
-    /*opacity: 0.2;*/
     text-align: center;
     width: 100%;
     font-weight: 700;
     margin: 20px 0px 20px 0px;
 
 }
-
-
 
 .iniciosesion-fondo{
     background-image: url(../../assets/img/secretaria.jpeg );
@@ -145,10 +141,4 @@
     font-size: 1rem;
     width: 100%;
     box-shadow: 0 1px 4px 0 rgba(22, 24, 26, 0.15);
-
-   /* &.disabled {
-        background-color: #e6e6e6;
-        color: #292929;
-        box-shadow: inherit;
-    }*/
 }

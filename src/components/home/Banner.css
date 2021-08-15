@@ -12,8 +12,6 @@
 .titulo-home .back{
     color:#f86433;
     font-size: 35px;
-   /* position: absolute;*/
-    /*opacity: 0.2;*/
     text-align: center;
     width: 100%;
     font-weight: 700;
@@ -32,9 +30,3 @@
     padding: 10px 30px 10px 30px;
     font-family: 'Montserrat', sans-serif;
 }
-
-/*
-#carouselExampleFade, .carousel .slide .carousel-fade{
-    z-index: 9999;
-}
-*/

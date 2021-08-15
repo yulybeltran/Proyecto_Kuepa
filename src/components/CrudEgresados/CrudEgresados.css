@@ -245,63 +245,46 @@
   margin: 0px 20px 0px 0px;
 }
 
+.form-group input:focus{
+  border:none;
+}
+
+
 input:invalid {
-   border-color: #f86433;
-   }
-   
-input:valid {
-   border-color:#00b2a5; 
+  border-color: #f86433;
   }
+  
+input:valid {
+  border-color:#00b2a5; 
+ }
 
 input[type=date]:valid {
-    border-color:#00b2a5; 
-   }
+   border-color:#00b2a5; 
+  }
 input[type=date]:invalid{
-    border-color: #f86433; 
-   }
+   border-color: #f86433; 
+  }
 select:invalid{
-    border-color:#f86433; 
-
-   }
-select:valid {
-    border-color:#00b2a5; 
-  
-   }
-
-input[type=number]:focus,input[type=text]:focus,input[type=date]:focus,textarea:focus,select:focus{
-  outline: 0;
-    box-shadow: transparent;
-    -webkit-box-shadow: none;
+   border-color:#f86433; 
 
   }
+select:valid {
+   border-color:#00b2a5; 
+ 
+  }
 
- /* input:focus, select:focus, select, input.form-control:focus {
+input[type=number]:focus,input[type=text]:focus,input[type=date]:focus,textarea:focus,select:focus{
+ outline: 0;
+   box-shadow: transparent;
+   -webkit-box-shadow: none;
 
-    outline:none !important;
+ }
 
-    outline-width: 0 !important;
 
-    box-shadow: none;
-
-    -moz-box-shadow: none;
-
-    -webkit-box-shadow: none;
-
-}
-select.line:focus,
-     textarea.line:focus{
-       
-       box-shadow: none;
-     }
-input select{
-  background-color: red;
-  box-shadow: none;
-  box-shadow: transparent;
-  -webkit-box-shadow: none;
-}*/
-
-select :focus-within{ 
+ select :focus-within{ 
   border: none !important;
   box-shadow: transparent;
   -webkit-box-shadow: none;
   }
+
+

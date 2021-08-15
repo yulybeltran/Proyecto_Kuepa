@@ -1,8 +1,6 @@
 import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
-
 //nombre de los menùs en la barra de navegaciòn lateral con sus iconos
 export const SidebarData = [
   {

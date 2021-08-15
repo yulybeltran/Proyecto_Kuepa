@@ -7,8 +7,6 @@
 .container-signup{
 	display: flex;
 	align-items: center;
-    /*justify-content: space-evenly;*/
-	
 }
 
 .carta-registro{    width: 25rem;

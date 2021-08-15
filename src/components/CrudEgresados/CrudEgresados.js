@@ -7,13 +7,10 @@ import * as FaIcons from 'react-icons/fa';
 import * as RiIcons from 'react-icons/ri';
 import Swal from 'sweetalert2';
 import 'react-responsive-modal/styles.css';
-//import { Formik, Field, Form, ErrorMessage } from "formik";
-//import { db } from "../../firebase";
-
 
 class CrudEgresados extends Component {
   state = {
-   index: [],
+   
     data: [],
     copia:[],
     modalInsertar: false,
@@ -25,7 +22,6 @@ class CrudEgresados extends Component {
     abiertoCerrado: false, //para cerrar el modal boton X
    
     form:{
-      index: '',
       nombres: '',
       apellidos: '',
       tipodedocumento: '',
@@ -102,12 +98,9 @@ class CrudEgresados extends Component {
   };
 
 
-  peticionPost=(e)=>{
+  peticionPost=()=>{
 
-
-  
     const initialState={
-      index:'',
       nombres: '',
       apellidos: '',
       tipodedocumento: '',
@@ -126,24 +119,18 @@ class CrudEgresados extends Component {
       codigo:'',
       usuario:'',
     }
-    
-
 
     firebase.child("egresados").push(this.state.form,
       error=>{
         if(error)console.log(error)
       });
-      
       this.setState({modalInsertar2: false, form:initialState});
     
   }
 
-  const = ({})
-
   peticionPut=()=>{
 
     const initialState={
-      index:'',
       nombres: '',
       apellidos: '',
       tipodedocumento: '',
@@ -373,7 +360,7 @@ class CrudEgresados extends Component {
                   <div className="form-group col-md-6">
                   <label>Nombres: </label>
                   <br />
-                  <input type="text" pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" required="required" title="Las iniciales de los nombres deben ser mayusculas y no se permiten numeros" className="form-control" autoComplete="none" name="nombres" onChange={this.handleChange} value={this.state.form && this.state.form.nombres}/>
+                  <input type="text" pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" required title="Las iniciales de los nombres deben ser letras en mayúsculas y no se permiten números" className="form-control" autoComplete="none" name="nombres" onChange={this.handleChange} value={this.state.form && this.state.form.nombres}/>
                   <br />
                 </div>
               </div>
@@ -381,12 +368,12 @@ class CrudEgresados extends Component {
                 <div className="form-group col-md-6">
                   <label>Apellidos: </label>
                   <br />
-                  <input type="text"  pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" required className="form-control" autoComplete="none" name="apellidos" onChange={this.handleChange} value={this.state.form && this.state.form.apellidos}/>
+                  <input type="text"  pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" required title="Las iniciales de los apellidos deben ser letras en mayúsculas y no se permiten números" className="form-control" autoComplete="none" name="apellidos" onChange={this.handleChange} value={this.state.form && this.state.form.apellidos}/>
                   <br />
                 </div>
                 <div className="form-group col-md-6">
                   <label htmlFor="">Tipo de documento:</label>
-                    <select type="text" required className="form-control ensayofocus"  name="tipodedocumento" onChange={this.handleChange} value={this.state.form && this.state.form.tipodedocumento} aria-label="Default select example">    
+                    <select type="text" required className="form-control ensayofocus"  name="tipodedocumento" onChange={this.handleChange} value={this.state.form && this.state.form.tipodedocumento}  >    
                           <option ></option>
                           <option value="NUIP">Número único de identificación personal (NUIP)</option>
                           <option value="Tarjeta de Identidad">Tarjeta de Identidad (TI)</option>
@@ -399,7 +386,7 @@ class CrudEgresados extends Component {
                 <div className="form-group col-md-6">
                   <label>Número de documento: </label>
                   <br />
-                  <input type="text"  pattern="[0-9- ]{8,15}" required className="form-control" autoComplete="none" name="numerodedocumento" onChange={this.handleChange} value={this.state.form && this.state.form.numerodedocumento}/>
+                  <input type="text"  pattern="[0-9- ]{8,15}" required  title="Solo se permiten números de más de 8 a 15 dígitos" className="form-control" autoComplete="none" name="numerodedocumento" onChange={this.handleChange} value={this.state.form && this.state.form.numerodedocumento}/>
                   <br />
                 </div>
                 <div className="form-group col-md-6">
@@ -419,7 +406,7 @@ class CrudEgresados extends Component {
                 <div className="form-group col-md-6">
                   <label>Lugar de nacimiento: </label>
                   <br />
-                  <input type="text" required  pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" className="form-control" autoComplete="none" name="lugardenacimiento" onChange={this.handleChange} value={this.state.form && this.state.form.lugardenacimiento}/>
+                  <input type="text" required  pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" title="Solo se permiten valores numéricos o letras"  className="form-control" autoComplete="none" name="lugardenacimiento" onChange={this.handleChange} value={this.state.form && this.state.form.lugardenacimiento}/>
                   <br />
                 </div>
               </div>
@@ -427,13 +414,13 @@ class CrudEgresados extends Component {
                 <div className="form-group col-md-6">
                   <label>Dirección: </label>
                   <br />
-                  <input type="text" required pattern="^[a-zA-Z0-9 #-]{2,30}" className="form-control" autoComplete="none" name="direccion" onChange={this.handleChange} value={this.state.form && this.state.form.direccion}/>
+                  <input type="text" required pattern="^[a-zA-Z0-9 #-]{2,30}" title="Se permiten letras, números, espacios, caracteres como guiones y #" className="form-control" autoComplete="none" name="direccion" onChange={this.handleChange} value={this.state.form && this.state.form.direccion}/>
                   <br />
                 </div>
                 <div className="form-group col-md-6">
                   <label>Teléfono: </label>
                   <br />
-                  <input type="text" required pattern="[0-9- ]{7,12}"  className="form-control" autoComplete="none" name="telefono" onChange={this.handleChange} value={this.state.form && this.state.form.telefono}/>
+                  <input type="text" required pattern="[0-9- ]{7,12}"  title="Están permitidos dígitos numéricos desde 7 a 12  caracteres" className="form-control" autoComplete="none" name="telefono" onChange={this.handleChange} value={this.state.form && this.state.form.telefono}/>
                   <br />
                 </div>
               </div>
@@ -441,7 +428,7 @@ class CrudEgresados extends Component {
               <div className="form-group col-md-6">
                   <label>Correo Electronico: </label>
                   <br />
-                  <input type="text" required pattern="[\w]+@{1}[\w]+\.[a-z]{2,3}" className="form-control" autoComplete="none" name="correo" onChange={this.handleChange} value={this.state.form && this.state.form.correo}/>
+                  <input type="text" required pattern="[\w]+@{1}[\w]+\.[a-z]{2,3}" title="Digite en este campo caracteres propios de un correo como letras números seguidos de un @" className="form-control" autoComplete="none" name="correo" onChange={this.handleChange} value={this.state.form && this.state.form.correo}/>
               </div>
               <div className="form-group col-md-6">
                   <label>Estado: </label>
@@ -457,11 +444,9 @@ class CrudEgresados extends Component {
           </div>
       </ModalBody>
       <ModalFooter>
-    
-        {/*<button className="boton-azul" onClick={()=>this.filtrarElementos()}>Guardar</button>*/}
+        <button className="boton-azul" onClick={()=>this.filtrarElementos()}>Guardar</button>
+        <button className="boton-naranja" type="submit" onClick={this.validacion}>Siguiente</button>
         <button className="boton-azul" onClick={()=>this.setState({modalInsertar: false})}>Cancelar</button>
-        <button className="boton-naranja" type="button" onClick={()=>this.setState({modalInsertar2:true, modalInsertar:false})}>Siguiente</button>
-        
       </ModalFooter>
       </Form>
     </Modal>
@@ -495,7 +480,7 @@ class CrudEgresados extends Component {
             <div className="form-group col-md-6">
               <label>Nombre del tutor: </label>
               <br />
-              <input type="text" required  pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" className="form-control" autoComplete="none" name="tutor" onChange={this.handleChange} value={this.state.form && this.state.form.tutor}/>
+              <input type="text" required  pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" title="Las iniciales de los nombres deben ser letras en mayúsculas y no se permiten números" className="form-control" autoComplete="none" name="tutor" onChange={this.handleChange} value={this.state.form && this.state.form.tutor}/>
               <br />
             </div>
             </div>
@@ -522,13 +507,13 @@ class CrudEgresados extends Component {
                 <div className="form-group col-md-6">
                   <label>Código de plataforma: </label>
                   <br />
-                  <input type="text" required pattern="[0-9- ]{3,12}" className="form-control" autoComplete="none" name="codigo" onChange={this.handleChange} value={this.state.form && this.state.form.codigo}/>
+                  <input type="text" required pattern="[0-9- ]{3,12}" title="Solo se aceptan valores númericos entre 3 y 12 dígitos" className="form-control" autoComplete="none" name="codigo" onChange={this.handleChange} value={this.state.form && this.state.form.codigo}/>
                   <br />
                 </div>
                   <div className="form-group col-md-6">
                   <label>Usuario de plataforma: </label>
                   <br />
-                  <input type="text" required pattern="[\w]+@{1}[\w]+\.[a-z]{2,3}" className="form-control" autoComplete="none" name="usuario" onChange={this.handleChange} value={this.state.form && this.state.form.usuario}/>
+                  <input type="text" required pattern="[\w]+@{1}[\w]+\.[a-z]{2,3}" title="Este campo debe diligenciarse como un correo electrónico con letras, números y el @" className="form-control" autoComplete="none" name="usuario" onChange={this.handleChange} value={this.state.form && this.state.form.usuario}/>
                   <br />
                 </div>
                 </div>
@@ -560,7 +545,7 @@ class CrudEgresados extends Component {
         <div className="form-group col-md-6">
           <label>Nombres: </label>
           <br />
-          <input type="text"  pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" required title="" className="form-control"  autoComplete="none" name="nombres" onChange={this.handleChange} value={this.state.form && this.state.form.nombres}/>
+          <input type="text"  pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" required title="Las iniciales de los nombres deben ser letras en mayúsculas y no se permiten números" className="form-control"  autoComplete="none" name="nombres" onChange={this.handleChange} value={this.state.form && this.state.form.nombres}/>
           <br />
         </div>
         </div>
@@ -568,12 +553,12 @@ class CrudEgresados extends Component {
           <div className="form-group col-md-6">
           <label>Apellidos: </label>
           <br />
-          <input type="text"  pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" required title="" className="form-control" autoComplete="none" name="apellidos" onChange={this.handleChange} value={this.state.form && this.state.form.apellidos}/>
+          <input type="text"  pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" required title="Las iniciales de los apellidos deben ser letras en mayúsculas y no se permiten números" className="form-control" autoComplete="none" name="apellidos" onChange={this.handleChange} value={this.state.form && this.state.form.apellidos}/>
           <br />
           </div>
           <div className="form-group col-md-6">
           <label htmlFor="">Tipo de documento:</label>
-            <select type="text" required className="form-control"  name="tipodedocumento" onChange={this.handleChange}   value={this.state.form && this.state.form.tipodedocumento} aria-label="Default select example">    
+            <select type="text" required className="form-control"  name="tipodedocumento" onChange={this.handleChange}  value={this.state.form && this.state.form.tipodedocumento} aria-label="Default select example">    
                   <option></option>
                   <option value="NUIP">Número único de identificación personal (NUIP)</option>
                   <option value="Tarjeta de Identidad">Tarjeta de Identidad (TI)</option>
@@ -586,7 +571,7 @@ class CrudEgresados extends Component {
           <div className="form-group col-md-6">
           <label>Número de documento: </label>
           <br />
-          <input type="text"  pattern="[0-9- ]{8,15}" required title="" className="form-control" autoComplete="none" name="numerodedocumento" onChange={this.handleChange} value={this.state.form && this.state.form.numerodedocumento}/>
+          <input type="text"   pattern="[0-9- ]{8,15}" required  title="Solo se permiten números de más de 8 a 15 dígitos" className="form-control" autoComplete="none" name="numerodedocumento" onChange={this.handleChange} value={this.state.form && this.state.form.numerodedocumento}/>
           <br />
           </div>
           <div className="form-group col-md-6">
@@ -600,13 +585,13 @@ class CrudEgresados extends Component {
           <div className="form-group col-md-6">
           <label>Edad: </label>
           <br />
-          <input type="text"  required pattern="[0-9]{1,2}"  title="" className="form-control" autoComplete="none" name="edad" onChange={this.handleChange} value={this.state.form && this.state.form.edad}/>
+          <input type="text"  required pattern="[0-9]{1,2}"  title="Solo se permiten valores numéricos" className="form-control" autoComplete="none" name="edad" onChange={this.handleChange} value={this.state.form && this.state.form.edad}/>
           <br />
           </div>
           <div className="form-group col-md-6">
           <label>Lugar de nacimiento: </label>
           <br />
-          <input type="text" required  pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" title="" className="form-control" autoComplete="none" name="lugardenacimiento" onChange={this.handleChange} value={this.state.form && this.state.form.lugardenacimiento}/>
+          <input type="text" required  pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" title="Solo se permiten caracteres alfabéticos o letras" className="form-control" autoComplete="none" name="lugardenacimiento" onChange={this.handleChange} value={this.state.form && this.state.form.lugardenacimiento}/>
           <br />
           </div>
           </div>
@@ -614,13 +599,13 @@ class CrudEgresados extends Component {
           <div className="form-group col-md-6">
           <label>Dirección: </label>
           <br />
-          <input type="text"  required pattern="^[a-zA-Z0-9 #-]{2,30}" title="" className="form-control" autoComplete="none" name="direccion" onChange={this.handleChange} value={this.state.form && this.state.form.direccion}/>
+          <input type="text"  required pattern="^[a-zA-Z0-9 #-]{2,30}" title="Se permiten letras, números, espacios, caracteres como guiones y #" className="form-control" autoComplete="none" name="direccion" onChange={this.handleChange} value={this.state.form && this.state.form.direccion}/>
           <br />
           </div>
           <div className="form-group col-md-6">
           <label>Teléfono: </label>
           <br />
-          <input type="text"  required pattern="[0-9- ]{7,12}" title="" className="form-control" autoComplete="none" name="telefono" onChange={this.handleChange} value={this.state.form && this.state.form.telefono}/>
+          <input type="text"  required pattern="[0-9- ]{7,12}"  title="Están permitidos dígitos numéricos desde 7 a 12  caracteres" className="form-control" autoComplete="none" name="telefono" onChange={this.handleChange} value={this.state.form && this.state.form.telefono}/>
           <br />
           </div>
           </div>
@@ -628,7 +613,7 @@ class CrudEgresados extends Component {
           <div className="form-group col-md-6">
           <label>Correo Electronico: </label>
           <br />
-          <input type="text" required pattern="[\w]+@{1}[\w]+\.[a-z]{2,3}" title="" className="form-control" autoComplete="none" name="correo" onChange={this.handleChange} value={this.state.form && this.state.form.correo}/>
+          <input type="text" required pattern="[\w]+@{1}[\w]+\.[a-z]{2,3}" title="Digite en este campo caracteres propios de un correo como letras números seguidos de un @" className="form-control" autoComplete="none" name="correo" onChange={this.handleChange} value={this.state.form && this.state.form.correo}/>
          </div>
          <div className="form-group col-md-6">
           <label>Estado: </label>
@@ -677,7 +662,7 @@ class CrudEgresados extends Component {
             <div className="form-group col-md-6">
               <label>Nombre del tutor: </label>
               <br />
-              <input type="text" required  pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" title="" className="form-control" autoComplete="none" name="tutor" onChange={this.handleChange} value={this.state.form && this.state.form.tutor}/>
+              <input type="text" required  pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" title="Las iniciales de los nombres deben ser letras en mayúsculas y no se permiten números" className="form-control" autoComplete="none" name="tutor" onChange={this.handleChange} value={this.state.form && this.state.form.tutor}/>
               <br />
             </div>
             </div>
@@ -704,13 +689,13 @@ class CrudEgresados extends Component {
                 <div className="form-group col-md-6">
                   <label>Código de plataforma: </label>
                   <br />
-                  <input type="text" required pattern="[0-9- ]{3,12}" title="" className="form-control" autoComplete="none" name="codigo" onChange={this.handleChange} value={this.state.form && this.state.form.codigo}/>
+                  <input type="text" required pattern="[0-9- ]{3,12}" title="Solo se aceptan valores númericos entre 3 y 12 dígitos" className="form-control" autoComplete="none" name="codigo" onChange={this.handleChange} value={this.state.form && this.state.form.codigo}/>
                   <br />
                 </div>
                   <div className="form-group col-md-6">
                   <label>Usuario de plataforma: </label>
                   <br />
-                  <input type="text"  required pattern="[\w]+@{1}[\w]+\.[a-z]{2,3}" title="" className="form-control" autoComplete="none" name="usuario" onChange={this.handleChange} value={this.state.form && this.state.form.usuario}/>
+                  <input type="text"  required pattern="[\w]+@{1}[\w]+\.[a-z]{2,3}" title="Este campo debe diligenciarse como un correo electrónico con letras, números y el @" className="form-control" autoComplete="none" name="usuario" onChange={this.handleChange} value={this.state.form && this.state.form.usuario}/>
                   <br />
                 </div>
                 </div>
