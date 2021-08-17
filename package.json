@@ -1,5 +1,5 @@
 {
-  "homepage": "https://yulybeltran.github.io/Proyecto_Kuepa",
+  
   "name": "kuepaproyecto",
   "version": "0.1.0",
   "private": true,
@@ -27,6 +27,7 @@
     "web-vitals": "^1.1.2",
     "yup": "^0.32.9"
   },
+  "homepage": "https://yulybeltran.github.io/Proyecto_Kuepa",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",

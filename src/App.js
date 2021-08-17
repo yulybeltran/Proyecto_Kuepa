@@ -11,15 +11,14 @@ import InformacionLaboral from './pages/InformacionLaboral';
 function App() {
   return (
     <div>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL} >
         <Switch>
-          <Route path='/' exact path component={Iniciosesion} />
-          <Route path='/home' exact component={Home} />
-          
-
-          <Route path='/registrar' component={SignUp} />
-          <Route path='/listaegresados' component={Listadodeegresados} />
-          <Route path='/informacionlaboral' component={InformacionLaboral} />
+          <Route exact  path='/' component={Iniciosesion} />
+          <Route exact  path='/home' component={Home} />
+          <Route exact  path='/iniciosesion' component={Iniciosesion} />
+          <Route exact  path='/registrar' component={SignUp} />
+          <Route exact  path='/listaegresados' component={Listadodeegresados} />
+          <Route exact  path='/informacionlaboral' component={InformacionLaboral} />
         </Switch>
         
       </Router>
