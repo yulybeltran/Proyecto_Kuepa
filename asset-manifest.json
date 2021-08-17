@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Proyecto_Kuepa/static/css/main.45cd4ce1.chunk.css",
+    "main.css": "/Proyecto_Kuepa/static/css/main.c68a9be9.chunk.css",
     "main.js": "/Proyecto_Kuepa/static/js/main.4a2b60dc.chunk.js",
     "main.js.map": "/Proyecto_Kuepa/static/js/main.4a2b60dc.chunk.js.map",
     "runtime-main.js": "/Proyecto_Kuepa/static/js/runtime-main.27b3b6a8.js",
@@ -10,7 +10,7 @@
     "static/js/2.809d547d.chunk.js.map": "/Proyecto_Kuepa/static/js/2.809d547d.chunk.js.map",
     "index.html": "/Proyecto_Kuepa/index.html",
     "static/css/2.22e2b85c.chunk.css.map": "/Proyecto_Kuepa/static/css/2.22e2b85c.chunk.css.map",
-    "static/css/main.45cd4ce1.chunk.css.map": "/Proyecto_Kuepa/static/css/main.45cd4ce1.chunk.css.map",
+    "static/css/main.c68a9be9.chunk.css.map": "/Proyecto_Kuepa/static/css/main.c68a9be9.chunk.css.map",
     "static/js/2.809d547d.chunk.js.LICENSE.txt": "/Proyecto_Kuepa/static/js/2.809d547d.chunk.js.LICENSE.txt",
     "static/media/RegistroUsuario.css": "/Proyecto_Kuepa/static/media/fondoregistro2.40108c36.jpeg",
     "static/media/homeimg1.e0302c0d.jpeg": "/Proyecto_Kuepa/static/media/homeimg1.e0302c0d.jpeg",
@@ -22,7 +22,7 @@
     "static/js/runtime-main.27b3b6a8.js",
     "static/css/2.22e2b85c.chunk.css",
     "static/js/2.809d547d.chunk.js",
-    "static/css/main.45cd4ce1.chunk.css",
+    "static/css/main.c68a9be9.chunk.css",
     "static/js/main.4a2b60dc.chunk.js"
   ]
 }
