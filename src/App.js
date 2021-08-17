@@ -11,7 +11,7 @@ import InformacionLaboral from './pages/InformacionLaboral';
 function App() {
   return (
     <div>
-      <HasRouter basename="/" >
+      <HashRouter basename="/" >
         <Switch>
           <Route exact  path='/' component={Iniciosesion} />
           <Route exact  path='/home' component={Home} />
@@ -21,7 +21,7 @@ function App() {
           <Route exact  path='/informacionlaboral' component={InformacionLaboral} />
         </Switch>
         
-      </HasRouter>
+      </HashRouter>
     </div>
   );
 }
