@@ -20,7 +20,6 @@ function App() {
           <Route exact  path='/listaegresados' component={Listadodeegresados} />
           <Route exact  path='/informacionlaboral' component={InformacionLaboral} />
         </Switch>
-        
       </HashRouter>
     </div>
   );
