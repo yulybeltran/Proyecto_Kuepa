@@ -6,7 +6,6 @@
 ##  Descripción del proyecto
 <p align="justify">Kuepa una organización educativa, de financiación privada, que se encuentra establecida en regiones de  Suramérica (o América Latina) dedicada a mejorar las habilidades profesionales y laborales de miles de jóvenes para facilitar su incursión en el mercado laboral, ingreso a la universidad y lo más importante: Cumplir sus sueños.</p>
 
-
 <p align="justify"> Por lo tanto, la institución requiere de un sistema de información de egresados para retroalimentar sus procesos de formación. En consecuencia, se crea un proyecto que utiliza la conexión a una bases de datos Firebase, desarrollando sus interfaces en la librería de JavaScript de código abierto ReactJS, el repositorio del proyecto en GitHub y el host en la gh-pages.
 </p>
 
